@@ -1,0 +1,4 @@
+*.html text
+*.java text
+* text=auto
+*.sh text eol=lf

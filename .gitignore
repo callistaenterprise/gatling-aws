@@ -1,17 +1,16 @@
-*.class
-*.log
-
-# sbt specific
-.cache
-.history
-.lib/
-dist/*
+.*.swp
+.project
+.checkstyle
+.classpath
+.springBeans
+.factorypath
+.apt_generated/
+.settings/
+.idea/
+.junk/
+.vagrant/
+*.iml
+nb-configuration.xml
 target/
-lib_managed/
-src_managed/
-project/boot/
-project/plugins/project/
-
-# Scala-IDE specific
-.scala_dependencies
-.worksheet
+src/site/asciidoc/api-docs/generated/
+src/site/asciidoc/api-docs/rest-api-index.adoc
