@@ -11,18 +11,14 @@ import io.gatling.core.stats.message.ResponseTimings
 import io.gatling.core.stats.StatsEngine
 import io.gatling.commons.stats.Status
 import io.gatling.core.util.NameGen
-import akka.actor.{ ActorRef, ActorSystem, Props }
-import akka.util.ByteString
+import akka.actor.{ ActorSystem, Props }
 
-import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.regions.{Region, Regions}
 import com.amazonaws.services.lambda.AWSLambdaClient
 import com.amazonaws.services.lambda.model.InvokeRequest
 import com.amazonaws.services.lambda.model.InvokeResult
 
 import java.nio.ByteBuffer
 
-import scala.collection.JavaConverters._
 
 object LambdaAction extends NameGen {
 
@@ -47,8 +43,7 @@ class LambdaActionActor(
 ) extends ActionActor {
 
   override def execute(session: Session) = {
-    val credentials = new BasicAWSCredentials(protocol.awsAccessKeyId, protocol.awsSecretAccessKey)
-    val awsClient = new AWSLambdaClient(credentials)
+    val awsClient = new AWSLambdaClient(protocol.credentialsProvider)
     awsClient.setRegion(protocol.awsRegion)
     val request = new InvokeRequest
     functionName(session).flatMap { resolvedFunctionName =>
