@@ -1,12 +1,11 @@
 package se.callistaenterprise.gatling.aws.protocol
 
 import io.gatling.core.CoreComponents
-import io.gatling.core.config.{ GatlingConfiguration, Credentials }
-import io.gatling.core.protocol.{ ProtocolKey, Protocol }
-
+import io.gatling.core.config.{Credentials, GatlingConfiguration}
+import io.gatling.core.protocol.{Protocol, ProtocolKey}
 import com.amazonaws.regions.Region
-
 import akka.actor.ActorSystem
+import com.amazonaws.auth.AWSCredentialsProvider
 
 object AwsProtocol {
 
@@ -26,8 +25,7 @@ object AwsProtocol {
 }
 
 case class AwsProtocol(
-    awsAccessKeyId: String,
-    awsSecretAccessKey: String,
+    credentialsProvider: AWSCredentialsProvider,
     awsRegion: Region
 ) extends Protocol {
 
